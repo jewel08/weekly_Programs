@@ -7,10 +7,10 @@ public class MagicalNumber
         long count = 0,t1=1,t2=1,p=0,q=0;
         while (n != 0) 
         {
-            long d=n%10;//digit Extraction
+            long d=n%10;//last digit Extraction
             if(d!=0)
             {
-                if(count%2==0)
+                if(count%2==0)//multiplying alternative numbers
                     t1=t1*d;
                 else
                     t2=t2*d;
