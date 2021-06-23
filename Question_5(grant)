@@ -100,19 +100,19 @@ public class Granted_program
         {
             int factor = array[x];
             if (factor==2)
-            {
+            {//2 being a prime number it is added to q
                 System.out.println(factor+" is a prime factor");
                 q=q+factor;
                 continue;
             }
             if (factor%2==0)
-            {
+            {//anything which is divisible by 2 is not a prime number
                 p=p+factor;
                 System.out.println(factor+" is a non prime factor");
                 continue;
             }
             for(int i = 3; i <=Math.sqrt(factor); i=i+2)
-            {
+            {//calculating number of factors of a number
                 if(factor%i==0)
                 c++;
             }
