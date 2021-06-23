@@ -22,7 +22,7 @@ public class Granted_program
         int totalDays=0;
         int[] month = new int[] { 0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         
-        if(isDateValid(current_date, current_month, current_year) || isDateValid(birth_date, birth_month, birth_year))
+        if(isDateValid(current_date, current_month, current_year) && isDateValid(birth_date, birth_month, birth_year))
         {
             for(int i=birth_year+1;i<current_year;i++)
             {//counting number of days in all those YEARS 
