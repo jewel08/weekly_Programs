@@ -1,0 +1,38 @@
+int n= sc.nextInt(); 
+		if(n==0)
+		      System.out.print("0 ");
+		else if(n<0)
+		      System.out.print("Error");
+		else
+		{
+		    int[] age=new int[n];
+		    for(int i=0;i<n;i++)
+		    {
+		        age[i] = sc.nextInt();
+		    }
+		    for(int i=0;i<n;i++)
+		    {
+		        
+		        if(age[i]>52)
+		        {
+		            total_no_of_eggs=total_no_of_eggs+16;
+		        }
+		        else
+		        {
+		            int rem_weeks = 4 - (52-age[i]);
+		            if(rem_weeks >= 0)
+                                total_no_of_eggs = total_no_of_eggs + (rem_weeks * 4);
+                            else
+                            {
+                                System.out.println("error");
+                                break;
+                            }
+                            
+                        }
+                       
+                    }
+                    
+                     System.out.println("Total eggs in a month:"+total_no_of_eggs);
+                }
+	}
+}
