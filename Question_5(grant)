@@ -1,0 +1,167 @@
+import java.util.*;
+
+public class Granted_program
+{
+   
+    public static boolean isDateValid(int date,int month, int year)
+    {//valid date checking
+        if(date<0||date>32||month<0||month>12||year<0)
+            return false; 
+        return true;
+    }
+    
+    public static boolean checkYear(int year)
+    {//leap year checking
+        if (((year % 4 == 0) && (year % 100!= 0)) || (year%400 == 0))
+            return true; 
+        return false;
+    }
+    
+    public static int totalDays(int current_date, int current_month, int current_year, int birth_date, int birth_month, int birth_year)
+    {//no. of days calculations
+        int totalDays=0;
+        int[] month = new int[] { 0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        
+        if(isDateValid(current_date, current_month, current_year) || isDateValid(birth_date, birth_month, birth_year))
+        {
+            for(int i=birth_year+1;i<current_year;i++)
+            {//counting number of days in all those YEARS 
+                if(checkYear(i))
+                { 
+                    totalDays =totalDays + 366;
+                }
+                else
+                {
+                    totalDays =totalDays + 365;
+                }
+            }
+            
+            for(int i=birth_month+1;i<13;i++)
+            {//Extracting Number of days from birth year
+                if(birth_month < 3)
+                {
+                    boolean is_birth_year_leap=checkYear(birth_year);
+                    if(is_birth_year_leap)
+                    {
+                        month [2]=29;
+                    }
+                }
+                    totalDays=totalDays+month[i];
+            }
+            
+            for(int i=1;i<current_month;i++)
+            {//Extracting number of days of current year
+                if(current_month >2)
+                {
+                    boolean is_current_year_leap=checkYear(current_year);
+                    if(is_current_year_leap)
+                    {
+                         month [2] = 29;
+                    }
+                }
+                    totalDays=totalDays+month[i]; 
+            }
+            
+            int birth_month_days=month[birth_month]-birth_date;
+            totalDays=totalDays+current_date+birth_month_days;
+            return totalDays;
+        }
+            
+	else
+	       return 0;
+    }
+    
+    public static void divisor(int totalDays)
+    {
+        int weeks= totalDays/7;
+        System.out.println("Total Weeks = "+weeks);
+        int array[]=new int[100];
+        int m=0;
+        for (int i=1;i<=weeks;i++)
+        {
+            if (weeks%i==0)
+            {//Storing all the factors in an array
+                array[m]=i;
+                m++;
+            }      
+        }
+        System.out.print("Factors of total number of weeks are : ");
+        int u;
+        for(u=0; u<m ; u++)
+        {//displaying all the factors
+            System.out.print(array[u]+" ");
+	
+        }
+        System.out.println();
+        int q=0;//for prime
+        int p=0;//for non prime
+        int c=0;
+        for(int x=0 ; x<m ; x++)
+        {
+            int factor = array[x];
+            if (factor==2)
+            {
+                System.out.println(factor+" is a prime factor");
+                q=q+factor;
+                continue;
+            }
+            if (factor%2==0)
+            {
+                p=p+factor;
+                System.out.println(factor+" is a non prime factor");
+                continue;
+            }
+            for(int i = 3; i <=Math.sqrt(factor); i=i+2)
+            {
+                if(factor%i==0)
+                c++;
+            }
+            if(c==0)
+            {   
+                System.out.println(factor+" is a prime factor");
+                q=q+factor;
+            }
+            else
+            {
+                p=p+factor;
+                System.out.println(factor+" is a not prime factor");
+            }
+        }
+        System.out.println();
+        System.out.println("Sum of all prime factors :"+q);
+        System.out.println("Sum of all non prime factors :"+p);
+        if(q>p)
+            System.out.println("GRANTED");
+        else
+           System.out.println("NOT GRANTED");
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        //input of current date
+        System.out.println("Enter Current date");
+        int current_date = sc.nextInt();
+        System.out.println("Enter Current month");
+        int current_month = sc.nextInt();
+        System.out.println("Enter Current year");
+        int current_year = sc.nextInt();
+        //input of birth date
+        System.out.println("Enter birth date");
+        int birth_date = sc.nextInt();
+        System.out.println("Enter birth month");
+        int birth_month = sc.nextInt();
+        System.out.println("Enter birth year");
+        int birth_year = sc.nextInt();
+        
+        int totalDays= totalDays( current_date,  current_month,  current_year,  birth_date,  birth_month,  birth_year);
+        if(totalDays==0)
+        {
+            System.out.println("Enter a Valid Date ");
+        }
+        else
+        {
+            System.out.println("Total days number of days = "+totalDays);
+            divisor(totalDays);
+        }
+    }
+}        
