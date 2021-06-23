@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class MagicalNumber
+{
+    public static void Check(long n)
+    {   
+        long count = 0,t1=1,t2=1,p=0,q=0;
+        while (n != 0) 
+        {
+            long d=n%10;//digit Extraction
+            if(d!=0)
+            {
+                if(count%2==0)
+                    t1=t1*d;
+                else
+                    t2=t2*d;
+            }
+            n = n/10;
+            d=0;
+            count++;
+        }
+        if(count>10)
+            System.out.print("Error ");
+        else
+        {
+            if(count%2==0)
+            {
+                p=t1;
+                q=t2;
+            }
+            else
+            {
+                p=t2;
+                q=t1;
+            }
+            if(p>q)
+                System.out.print("Dominant ");
+            else
+                System.out.print("Magical ");
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter total numbers input and the individual number separated by space.");
+        int k= sc.nextInt();
+
+        if(k<0)
+            System.out.println("Error");
+        else
+        {
+            long[] n= new long[k];
+            for(int i=0;i<k;i++)
+            {
+                n[i]=sc.nextLong();
+            }
+            for(int i=0;i<k;i++)
+            {
+                long num=n[i];
+                if(num<=0)
+                    System.out.print("Error ");
+                else
+                    Check(num);
+            }
+        }
+    }
+}
