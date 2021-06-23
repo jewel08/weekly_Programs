@@ -1,4 +1,16 @@
-int n= sc.nextInt(); 
+import java.util.*;
+
+public class SwanEggs 
+{
+	
+	public static void main(String[] args)
+	{
+	
+		int total_no_of_eggs = 0;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The number of swan and their weights in integer and separated by space.");
+		int n= sc.nextInt(); 
 		if(n==0)
 		      System.out.print("0 ");
 		else if(n<0)
