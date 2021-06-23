@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class DailyMarket
+{
+    
+    public static void Calculations(float x, float y, float z, float t, float w, int month,int year)
+    {
+        float days=numberDays(month,year);
+        float daily= x+y+z+t+w;
+        float monthly = daily*days;
+        System.out.print(daily+" "+monthly);
+    }
+    public static boolean isDateValid(int month, int year)
+    {
+        if(month<0||month>12||year<0)
+            return false; 
+        return true;
+    }
+    public static boolean checkYear(int year)
+    {
+        if (((year % 4 == 0) && (year % 100!= 0)) || (year%400 == 0))
+            return true; 
+        return false;
+    }
+    public static float numberDays(int month,int year)
+    {
+        float[] days= new float[]{31,28,31,30,31,30,31,31,30,31,30,31};
+        boolean leap=checkYear(year);
+        if (leap==true)
+            days[1]=29;
+        float day = days[month-1];
+        return day;
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the values:");
+        float x=sc.nextFloat();
+        float y=sc.nextFloat();
+        float z=sc.nextFloat();
+        float w=sc.nextFloat();
+        float t=sc.nextFloat();
+        int month=sc.nextInt();
+        int year=sc.nextInt();
+        boolean check= isDateValid(month,year);
+        if(y<x || y<z || y<t || y<w || y==0 || x==0 || z==0|| w==0 || t==0 || check==false)
+            System.out.println("Error");
+        else
+        {
+            Calculations(x,y,z,t,w,month,year);
+        }
+    }
+}
